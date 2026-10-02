@@ -1,6 +1,6 @@
 "use client";
 
-import { VERA_HIDE_LOGOUT } from "@/lib/vera";
+import { VERA_HIDE_LOGOUT, VERA_HIDE_ADD_ACCOUNT } from "@/lib/vera";
 import { useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo, useId } from "react";
 import { createPortal } from "react-dom";
 import { Check, Plus, LogOut, Star, ChevronDown, AlertCircle, GripVertical, X } from "lucide-react";
@@ -335,7 +335,7 @@ export function AccountSwitcher({ variant = "rail", className }: AccountSwitcher
           </div>
 
           {/* Separator + Add Account */}
-          {accounts.length < getMaxAccounts() && (
+          {!VERA_HIDE_ADD_ACCOUNT && accounts.length < getMaxAccounts() && (
             <div className="border-t border-border">
               <button
                 onClick={handleAddAccount}

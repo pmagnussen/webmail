@@ -1,5 +1,6 @@
 "use client";
 
+import { VERA_HIDE_ADD_ACCOUNT } from "@/lib/vera";
 import { useState, useRef, useCallback, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { Check, GripVertical, Plus, Star, AlertCircle, ChevronRight } from 'lucide-react';
@@ -217,7 +218,7 @@ export function AccountSettings() {
               />
             ))}
 
-            {accounts.length < max && (
+            {!VERA_HIDE_ADD_ACCOUNT && accounts.length < max && (
               <Button
                 variant="outline"
                 size="sm"
