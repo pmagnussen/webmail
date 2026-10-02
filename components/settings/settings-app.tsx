@@ -1,5 +1,6 @@
 "use client";
 
+import { VERA_HIDE_LOGOUT } from "@/lib/vera";
 import { useState, useEffect, useCallback, useRef, useMemo, useSyncExternalStore } from 'react';
 import { useRouter } from '@/i18n/navigation';
 import { useTranslations, useMessages } from 'next-intl';
@@ -1021,7 +1022,7 @@ export function SettingsApp({ linkSegments }: SettingsAppProps = {}) {
             ))}
           </div>
 
-          <div className="border-t border-border px-5 py-3">
+          {!VERA_HIDE_LOGOUT && <div className="border-t border-border px-5 py-3">
             <button
               onClick={logout}
               className="w-full flex items-center gap-3 py-2.5 text-sm text-destructive hover:bg-muted rounded-md px-2 transition-colors duration-150"
@@ -1029,7 +1030,7 @@ export function SettingsApp({ linkSegments }: SettingsAppProps = {}) {
               <LogOut className="w-4 h-4" />
               <span>{tSidebar('sign_out')}</span>
             </button>
-          </div>
+          </div>}
         </div>
 
         {!isEmbedded && (

@@ -1,5 +1,6 @@
 "use client";
 
+import { VERA_HIDE_LOGOUT, VERA_HIDE_APPS } from "@/lib/vera";
 import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { Mail, Calendar, BookUser, HardDrive, Settings, Keyboard, Plus, Shield, LogOut, Check } from "lucide-react";
@@ -584,7 +585,7 @@ export function NavigationRail({
         })}
 
         {/* Manage apps button */}
-        {sidebarAppsEnabled && onManageApps && (
+        {!VERA_HIDE_APPS && sidebarAppsEnabled && onManageApps && (
           <button
             onClick={onManageApps}
             className={cn(
@@ -728,7 +729,7 @@ export function NavigationRail({
             </div>
 
             {/* Logout button with popover */}
-            <button
+            {!VERA_HIDE_LOGOUT && <button
               ref={logoutBtnRef}
               onClick={() => setLogoutMenuOpen(!logoutMenuOpen)}
               className="flex items-center justify-center w-9 h-9 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
@@ -738,9 +739,9 @@ export function NavigationRail({
               aria-haspopup="menu"
             >
               <LogOut className="w-4 h-4" />
-            </button>
+            </button>}
 
-            {logoutMenuOpen && createPortal(
+            {!VERA_HIDE_LOGOUT && logoutMenuOpen && createPortal(
               <div
                 ref={logoutPopoverRef}
                 onKeyDown={onLogoutMenuKeyDown}

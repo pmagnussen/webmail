@@ -1,5 +1,6 @@
 "use client";
 
+import { VERA_HIDE_LOGOUT } from "@/lib/vera";
 import { useState, useRef, useEffect, useLayoutEffect, useCallback, useMemo, useId } from "react";
 import { createPortal } from "react-dom";
 import { Check, Plus, LogOut, Star, ChevronDown, AlertCircle, GripVertical, X } from "lucide-react";
@@ -360,15 +361,15 @@ export function AccountSwitcher({ variant = "rail", className }: AccountSwitcher
                 {t("set_as_default")}
               </button>
             )}
-            <button
+            {!VERA_HIDE_LOGOUT && <button
               onClick={handleLogout}
               className="w-full flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-muted transition-colors"
               role="menuitem"
             >
               <LogOut className="w-4 h-4" />
               {t("sign_out_of", { account: displayEmail })}
-            </button>
-            {accounts.length > 1 && (
+            </button>}
+            {!VERA_HIDE_LOGOUT && accounts.length > 1 && (
               <button
                 onClick={handleLogoutAll}
                 className="w-full flex items-center gap-2 px-3 py-2 text-sm text-destructive hover:bg-muted transition-colors"
